@@ -1,6 +1,11 @@
 // cyclesReducer.ts
-import { ActionTypes } from "./actions";
 import { produce } from "immer";
+import {
+  ActionTypes,
+  addNewCycleAction,
+  interruptCycleAction,
+  markCycleAsFinishedAction,
+} from "./actions";
 
 /**
  * Representa um ciclo de trabalho
@@ -23,28 +28,13 @@ export interface CyclesState {
 }
 
 /* =======================
-   ACTIONS TIPADAS
+   ACTIONS (inferidas)
 ======================= */
 
-interface AddNewCycleAction {
-  type: ActionTypes.ADD_NEW_CYCLE;
-  payload: {
-    newCycle: Cycle;
-  };
-}
-
-interface InterruptCycleAction {
-  type: ActionTypes.INTERRUPT_CYCLE;
-}
-
-interface MarkCycleAsFinishedAction {
-  type: ActionTypes.MARK_CYCLE_AS_FINISHED;
-}
-
 type CyclesActions =
-  | AddNewCycleAction
-  | InterruptCycleAction
-  | MarkCycleAsFinishedAction;
+  | ReturnType<typeof addNewCycleAction>
+  | ReturnType<typeof interruptCycleAction>
+  | ReturnType<typeof markCycleAsFinishedAction>;
 
 /* =======================
    ESTADO INICIAL

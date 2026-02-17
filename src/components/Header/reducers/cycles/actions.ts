@@ -1,27 +1,30 @@
-// actions.ts
 import type { Cycle } from "./reducer";
 
 /**
- * Enum centralizado para evitar strings mágicas
- * e garantir tipagem forte no reducer.
+ * Action types centralizados
  */
-export enum ActionTypes {
-  ADD_NEW_CYCLE = "ADD_NEW_CYCLE",
-  INTERRUPT_CYCLE = "INTERRUPT_CYCLE",
-  MARK_CYCLE_AS_FINISHED = "MARK_CYCLE_AS_FINISHED",
-}
+export const ActionTypes = {
+  ADD_NEW_CYCLE: "ADD_NEW_CYCLE",
+  INTERRUPT_CYCLE: "INTERRUPT_CYCLE",
+  MARK_CYCLE_AS_FINISHED: "MARK_CYCLE_AS_FINISHED",
+} as const;
+
+/**
+ * Union type dos valores de ActionTypes
+ */
+export type ActionType =
+  typeof ActionTypes[keyof typeof ActionTypes];
 
 /**
  * Action para criar um novo ciclo
- * @param newCycle ciclo criado
  */
 export function addNewCycleAction(newCycle: Cycle) {
   return {
-    type: ActionTypes.ADD_NEW_CYCLE as const,
+    type: ActionTypes.ADD_NEW_CYCLE,
     payload: {
       newCycle,
     },
-  };
+  } as const;
 }
 
 /**
@@ -29,8 +32,8 @@ export function addNewCycleAction(newCycle: Cycle) {
  */
 export function interruptCycleAction() {
   return {
-    type: ActionTypes.INTERRUPT_CYCLE as const,
-  };
+    type: ActionTypes.INTERRUPT_CYCLE,
+  } as const;
 }
 
 /**
@@ -38,6 +41,6 @@ export function interruptCycleAction() {
  */
 export function markCycleAsFinishedAction() {
   return {
-    type: ActionTypes.MARK_CYCLE_AS_FINISHED as const,
-  };
+    type: ActionTypes.MARK_CYCLE_AS_FINISHED,
+  } as const;
 }

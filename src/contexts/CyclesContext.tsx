@@ -1,4 +1,3 @@
-// CyclesContext.tsx
 import {
   createContext,
   useEffect,
@@ -6,7 +5,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import zod from "zod";
 
 import type { Cycle } from "../components/Header/reducers/cycles/reducer";
 import {
@@ -46,18 +44,6 @@ interface CyclesContextType {
 export const CyclesContext = createContext({} as CyclesContextType);
 
 /* =======================
-   ZOD
-======================= */
-
-/*const newCycleFormValidationSchema = zod.object({
-  task: zod.string().min(1, "Informe a tarefa"),
-  minutesAmount: zod
-    .number()
-    .min(1, "O ciclo deve ter no mínimo 1 minuto")
-    .max(60, "O ciclo deve ter no máximo 60 minutos"),
-});*/
-
-/* =======================
    PROVIDER
 ======================= */
 
@@ -70,7 +56,18 @@ export function CyclesContextProvider({
 }: CyclesContextProviderProps) {
   const [cyclesState, dispatch] = useReducer(
     cyclesReducer,
-    initialCyclesState
+    initialCyclesState,
+    (initialState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        "@ignite-timer:cycles-state"
+      );
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON);
+      }
+
+      return initialState;
+    }
   );
 
   const { cycles, activeCycleId } = cyclesState;
@@ -82,14 +79,17 @@ export function CyclesContextProvider({
   );
 
   /* =======================
-     HANDLERS
+     EFFECTS
   ======================= */
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(cyclesState)
+    const stateJSON = JSON.stringify(cyclesState);
+    localStorage.setItem("@ignite-timer:cycles-state", stateJSON);
+  }, [cyclesState]);
 
-    localStorage.setItem('@ignite-timer:cycles-state', stateJSON)
-  }, [cyclesState])
+  /* =======================
+     HANDLERS
+  ======================= */
 
   function createNewCycle(data: CreateCycleData) {
     const id = String(new Date().getTime());
