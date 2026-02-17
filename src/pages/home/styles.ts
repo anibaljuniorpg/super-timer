@@ -1,67 +1,100 @@
 import styled from "styled-components";
 
-/*
-** O HomeContainer é o componente principal da página inicial, responsável por envolver todo o conteúdo da página.
- Ele é estilizado para ocupar todo o espaço disponível, com um layout flexbox que organiza os elementos em uma coluna,
-  centralizando-os tanto horizontalmente quanto verticalmente. O formulário dentro do HomeContainer também é configurado como um flexbox,
-   permitindo que os elementos sejam organizados em uma coluna com um espaçamento de 3.5rem entre eles.
-*/
-export const HomeContainer = styled.main`
-    flex: 1;
+/* =======================
+   HOME CONTAINER
+======================= */
 
+export const HomeContainer = styled.main`
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+
+  form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 3.5rem;
+    width: 100%;
+    max-width: 480px;
+  }
 
+  @media (max-width: 768px) {
     form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3.5rem;
+      gap: 2rem;
     }
+  }
 `;
 
+/* =======================
+   COUNTDOWN
+======================= */
 
-
-/** O HistoryList é um componente estilizado que representa a lista de histórico. Ele é configurado para ocupar todo
- o espaço disponível, com uma margem superior de 2rem. O conteúdo dentro do HistoryList é organizado em uma tabela, 
- que tem uma largura de 100% e um colapso de bordas para garantir que as células estejam unidas. A tabela tem um mínimo*/
 export const CountdownContainer = styled.div`
-    font-family: 'Roboto Mono', monospace;
-    font-size: 10rem;
-    line-height: 8rem;
-    color: ${props => props.theme["gray-100"]}; 
+  font-family: "Roboto Mono", monospace;
+  font-size: 10rem;
+  line-height: 8rem;
+  color: ${(props) => props.theme["gray-100"]};
 
-    display:flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 
-    span{
-        background: ${props => props.theme["gray-700"]};
-        padding: 2rem 1rem;
-        border-radius: 8px;
+  span {
+    background: ${(props) => props.theme["gray-700"]};
+    padding: 2rem 1rem;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 7rem;
+    line-height: 6rem;
+
+    span {
+      padding: 1.5rem 0.75rem;
     }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 4.5rem;
+    line-height: 4rem;
+
+    span {
+      padding: 1rem 0.5rem;
+    }
+  }
 `;
 
+/* =======================
+   SEPARATOR
+======================= */
 
 export const Separator = styled.div`
-    padding: 2rem 0;
-    color: ${props => props.theme["green-500"]};
-    width: 4rem;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+  padding: 2rem 0;
+  color: ${(props) => props.theme["green-500"]};
+  width: 4rem;
+
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    width: 2rem;
+  }
 `;
 
-
-
+/* =======================
+   BUTTON BASE
+======================= */
 
 export const ButtonInput = styled.button`
   width: 37.9925rem;
   height: 4rem;
   border-radius: 8px;
   border: 0;
-  color: ${props => props.theme["gray-100"]};
+  color: ${(props) => props.theme["gray-100"]};
   font-weight: bold;
   cursor: pointer;
 
@@ -78,25 +111,36 @@ export const ButtonInput = styled.button`
   &:disabled {
     cursor: not-allowed;
   }
-`
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+/* =======================
+   START BUTTON
+======================= */
 
 export const StartCountDownButton = styled(ButtonInput)`
-  background: ${props => props.theme["green-500"]};
+  background: ${(props) => props.theme["green-500"]};
 
   &:not(:disabled):hover {
-    background: ${props => props.theme["green-300"]};
+    background: ${(props) => props.theme["green-300"]};
   }
 
   &:disabled {
-    background: ${props => props.theme["green-200"]};
+    background: ${(props) => props.theme["green-200"]};
   }
-`
+`;
+
+/* =======================
+   STOP BUTTON
+======================= */
 
 export const StopCountdownButton = styled(ButtonInput)`
-  background: ${props => props.theme["red-500"]};
+  background: ${(props) => props.theme["red-500"]};
 
-  
   &:hover {
-    background: ${props => props.theme["red-700"]};
+    background: ${(props) => props.theme["red-700"]};
   }
-`
+`;

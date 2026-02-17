@@ -1,30 +1,38 @@
 import styled from "styled-components";
 
-/** O HistoryList é um componente estilizado que representa a lista de histórico. Ele é configurado para ocupar todo
- o espaço disponível, com uma margem superior de 2rem. O conteúdo dentro do HistoryList é organizado em uma tabela, 
- que tem uma largura de 100% e um colapso de bordas para garantir que as células estejam unidas. A tabela tem um mínimo*/
 export const CountdownContainer = styled.div`
-    font-family: 'Roboto Mono', monospace;
-    font-size: 10rem;
-    line-height: 8rem;
-    color: ${props => props.theme["gray-100"]}; 
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(3.5rem, 10vw, 10rem);
+  line-height: clamp(3rem, 8vw, 8rem);
+  color: ${(props) => props.theme["gray-100"]};
 
-    display:flex;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1rem);
 
-    span{
-        background: ${props => props.theme["gray-700"]};
-        padding: 2rem 1rem;
-        border-radius: 8px;
-    }
+  /* Evita quebra e overflow */
+  white-space: nowrap;
+
+  span {
+    background: ${(props) => props.theme["gray-700"]};
+    padding: clamp(0.75rem, 2vw, 2rem)
+      clamp(0.5rem, 1.5vw, 1rem);
+    border-radius: 8px;
+
+    min-width: clamp(3rem, 8vw, 6rem);
+    text-align: center;
+  }
 `;
 
-
 export const Separator = styled.div`
-    padding: 2rem 0;
-    color: ${props => props.theme["green-500"]};
-    width: 4rem;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+  color: ${(props) => props.theme["green-500"]};
+
+  width: clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(1rem, 3vw, 2rem) 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 `;
