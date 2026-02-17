@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1abc9c"/>
+      <stop offset="100%" stop-color="#16a085"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#greenGradient)"/>
+
+  <!-- Chat bubble -->
+  <path d="M20 22
+           h24
+           a6 6 0 0 1 6 6
+           v8
+           a6 6 0 0 1 6 6
+           h-10
+           l-6 6
+           l1-6
+           h-15
+           a6 6 0 0 1-6-6
+           v-8
+           a6 6 0 0 1 6-6
+           z"
+        fill="#ffffff"/>
+</svg>
